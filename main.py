@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import boto3
 
 load_dotenv()
+REGION = 'ap-northeast-1'
 
 
 def get_findings(client):
@@ -36,7 +37,7 @@ def count_findings(findings):
 
 
 if __name__ == '__main__':
-    client = boto3.client('securityhub')
+    client = boto3.client('securityhub',  region_name=REGION)
     findings = get_findings(client)
     print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
         count_findings(findings)))
