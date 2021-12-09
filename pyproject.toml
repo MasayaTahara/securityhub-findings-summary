@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "securityhub-findings-summary"
+version = "0.1.0"
+description = "Create summary of AWS Security Hub findings"
+authors = ["MasayaTahara <mocoso.0u1@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+boto3 = "^1.20.22"
+python-dotenv = "^0.19.2"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
