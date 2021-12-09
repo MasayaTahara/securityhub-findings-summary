@@ -39,5 +39,6 @@ def count_findings(findings):
 if __name__ == '__main__':
     client = boto3.client('securityhub',  region_name=REGION)
     findings = get_findings(client)
+    print("Region: {}".format(REGION))
     print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
         count_findings(findings)))
