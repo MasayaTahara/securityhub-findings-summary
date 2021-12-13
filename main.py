@@ -8,8 +8,18 @@ REGION = 'ap-northeast-1'
 
 def get_findings(client):
     paginator = client.get_paginator('get_findings')
+    response_iterator = paginator.paginate(
+        Filters={
+            'RecordState': [
+                {
+                    'Value': 'ACTIVE',
+                    'Comparison': 'EQUALS'
+                }
+            ]
+        }
+    )
     findings = []
-    for p in paginator.paginate():
+    for p in response_iterator:
         findings_in_page = p.get('Findings')
         for f in findings_in_page:
             findings.append(f)
@@ -22,17 +32,15 @@ def count_findings(findings):
     count_medium = 0
     count_low = 0
     for f in findings:
-        record_state = f.get('RecordState')
-        if record_state == 'ACTIVE':
-            severity = f.get('Severity').get('Label')
-            if severity == 'CRITICAL':
-                count_critical += 1
-            elif severity == 'HIGH':
-                count_high += 1
-            elif severity == 'MEDIUM':
-                count_medium += 1
-            elif severity == 'LOW':
-                count_low += 1
+        severity = f.get('Severity').get('Label')
+        if severity == 'CRITICAL':
+            count_critical += 1
+        elif severity == 'HIGH':
+            count_high += 1
+        elif severity == 'MEDIUM':
+            count_medium += 1
+        elif severity == 'LOW':
+            count_low += 1
     return [count_critical, count_high, count_medium, count_low]
 
 
