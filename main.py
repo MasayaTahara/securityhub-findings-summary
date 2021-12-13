@@ -72,6 +72,12 @@ class Cli(object):
         print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
             count_severity(self.findings)))
 
+    def failed(self):
+        pass
+
+    def passed(self):
+        pass
+
 
 if __name__ == '__main__':
     cli = Cli()
