@@ -14,6 +14,24 @@ def get_findings(client):
                     'Value': 'ACTIVE',
                     'Comparison': 'EQUALS'
                 }
+            ],
+            'SeverityLabel': [
+                {
+                    'Value': 'CRITICAL',
+                    'Comparison': 'EQUALS'
+                },
+                {
+                    'Value': 'HIGH',
+                    'Comparison': 'EQUALS'
+                },
+                {
+                    'Value': 'MEDIUM',
+                    'Comparison': 'EQUALS'
+                },
+                {
+                    'Value': 'LOW',
+                    'Comparison': 'EQUALS'
+                },
             ]
         }
     )
