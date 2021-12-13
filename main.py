@@ -61,9 +61,25 @@ def count_severity(findings):
     return [count_critical, count_high, count_medium, count_low]
 
 
+def count_compliance_status(findings):
+    count_failed = 0
+    count_passed = 0
+    for f in findings:
+        compliance = f.get('Compliance')
+        if compliance != None:
+            compliance_status = compliance.get('Status')
+            if compliance_status == 'FAILED':
+                count_failed += 1
+            elif compliance_status == 'PASSED':
+                count_passed += 1
+    return [count_failed, count_passed]
+
+
 if __name__ == '__main__':
     client = boto3.client('securityhub',  region_name=REGION)
     findings = get_findings(client)
     print("Region: {}".format(REGION))
+    print("Compliance status: [FAILED, PASSED] = {}".format(
+        count_compliance_status(findings)))
     print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
         count_severity(findings)))
