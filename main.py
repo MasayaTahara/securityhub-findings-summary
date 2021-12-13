@@ -43,7 +43,7 @@ def get_findings(client):
     return findings
 
 
-def count_findings(findings):
+def count_severity(findings):
     count_critical = 0
     count_high = 0
     count_medium = 0
@@ -66,4 +66,4 @@ if __name__ == '__main__':
     findings = get_findings(client)
     print("Region: {}".format(REGION))
     print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
-        count_findings(findings)))
+        count_severity(findings)))
