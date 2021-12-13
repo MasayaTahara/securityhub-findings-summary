@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 import boto3
+import fire
 
 load_dotenv()
 REGION = 'ap-northeast-1'
@@ -57,11 +58,18 @@ def count_compliance_status(findings):
     return [count_failed, count_passed]
 
 
+class Cli(object):
+
+    def count(self):
+        client = boto3.client('securityhub',  region_name=REGION)
+        findings = get_findings(client)
+        print("Region: {}".format(REGION))
+        print("Compliance status: [FAILED, PASSED] = {}".format(
+            count_compliance_status(findings)))
+        print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
+            count_severity(findings)))
+
+
 if __name__ == '__main__':
-    client = boto3.client('securityhub',  region_name=REGION)
-    findings = get_findings(client)
-    print("Region: {}".format(REGION))
-    print("Compliance status: [FAILED, PASSED] = {}".format(
-        count_compliance_status(findings)))
-    print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
-        count_severity(findings)))
+    cli = Cli()
+    fire.Fire(cli)

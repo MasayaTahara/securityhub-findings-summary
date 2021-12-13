@@ -2,7 +2,7 @@
 Create summary of AWS Security Hub findings
 
 ```sh
-❯ poetry run python main.py
+❯ poetry run python main.py count
 Region: ap-northeast-1
 Compliance status: [FAILED, PASSED] = [36, 381]
 Findings: [CRITICAL, HIGH, MEDIUM, LOW] = [5, 2, 16, 18]
@@ -18,6 +18,6 @@ cp .env.sample .env
 # Install packages
 poetry install
 
-# Run script
-poetry run python main.py
+# Count severity
+poetry run python main.py count
 ```
