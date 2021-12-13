@@ -25,6 +25,6 @@ cp .env.sample .env
 # Install packages
 poetry install
 
-# Count severity
-poetry run python main.py count
+# Show help
+poetry run python main.py --help
 ```
