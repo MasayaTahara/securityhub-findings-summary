@@ -8,10 +8,10 @@ Region: ap-northeast-1
 Compliance status: [FAILED, PASSED] = [36, 381]
 Findings: [CRITICAL, HIGH, MEDIUM, LOW] = [5, 2, 16, 18]
 
-# Show failed findings
+# Show failed findings with file name "failed_findings.json"
 ❯ poetry run python main.py failed
 
-# Show passed findings
+# Show passed findings with file name "passed_findings.json"
 ❯ poetry run python main.py passed
 ```
 
