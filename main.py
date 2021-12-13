@@ -15,24 +15,6 @@ def get_findings(client):
                     'Comparison': 'EQUALS'
                 }
             ],
-            'SeverityLabel': [
-                {
-                    'Value': 'CRITICAL',
-                    'Comparison': 'EQUALS'
-                },
-                {
-                    'Value': 'HIGH',
-                    'Comparison': 'EQUALS'
-                },
-                {
-                    'Value': 'MEDIUM',
-                    'Comparison': 'EQUALS'
-                },
-                {
-                    'Value': 'LOW',
-                    'Comparison': 'EQUALS'
-                },
-            ]
         }
     )
     findings = []
