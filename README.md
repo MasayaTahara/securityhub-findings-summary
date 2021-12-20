@@ -18,6 +18,9 @@ poetry run python main.py passed
 
 ## Set up
 ```sh
+# Install tool
+brew install poetry
+
 # Set environment variables
 cp .env.sample .env
 # Edit .env
