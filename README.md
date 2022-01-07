@@ -32,4 +32,7 @@ poetry install
 
 # Show help
 poetry run python src/main.py --help
+
+# Run tests
+poetry run pytest .
 ```

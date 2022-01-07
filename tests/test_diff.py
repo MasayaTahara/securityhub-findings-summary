@@ -11,7 +11,7 @@ def test_get_summary():
     previous = get_findings_from_csv(
         'tests/data/SecurityHub_findings_status_200001010000.csv')
     current = get_findings_from_csv(
-        'tests/data/SecurityHub_findings_status_200001020000.csv')
+        'tests/data/current_findings_1.csv')
     summary = get_findings_from_csv(
         'tests/data/SecurityHub_findings_status_200001030000.csv')
 
