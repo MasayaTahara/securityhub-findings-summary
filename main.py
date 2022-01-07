@@ -1,4 +1,4 @@
-import json
+import csv
 import os
 from dotenv import load_dotenv
 import boto3
@@ -25,23 +25,30 @@ class Cli(object):
         print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
             count.count_severity(findings)))
 
-    def failed(self, output='failed_findings.json'):
+    def failed(self, output='failed_findings.csv'):
         failed_findings = get.get_findings_by_compliance_status(
             self._client, compliance_status='FAILED')
         findings_detail = detail.get_findings_detail(failed_findings)
         with open(os.path.join(os.getcwd(), output), 'w') as f:
-            json.dump(findings_detail, f, ensure_ascii=False, indent=4)
+            labels = findings_detail[0].keys()
+            writter = csv.DictWriter(f, fieldnames=labels)
+            writter.writeheader()
+            writter.writerows(findings_detail)
 
-    def passed(self, output='passed_findings.json'):
+    def passed(self, output='passed_findings.csv'):
         passed_findings = get.get_findings_by_compliance_status(
             self._client, compliance_status='PASSED')
         findings_detail = detail.get_findings_detail(passed_findings)
         with open(os.path.join(os.getcwd(), output), 'w') as f:
-            json.dump(findings_detail, f, ensure_ascii=False, indent=4)
+            labels = findings_detail[0].keys()
+            writter = csv.DictWriter(f, fieldnames=labels)
+            writter.writeheader()
+            writter.writerows(findings_detail)
 
     def summary(self, diff):
         failed_findings = get.get_findings_by_compliance_status(
             self._client, compliance_status='FAILED')
+        current_findings_detail = detail.get_findings_detail(failed_findings)
 
 
 if __name__ == '__main__':
