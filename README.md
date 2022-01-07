@@ -2,6 +2,8 @@
 Create summary of AWS Security Hub findings
 
 ```sh
+# TODO: Add usage of "summary"
+
 # Count findings
 poetry run python main.py count
 Region: ap-northeast-1
