@@ -25,19 +25,23 @@ class Cli(object):
         print("Findings: [CRITICAL, HIGH, MEDIUM, LOW] = {}".format(
             count.count_severity(findings)))
 
-    def failed(self, file='failed_findings.json'):
+    def failed(self, output='failed_findings.json'):
         failed_findings = get.get_findings_by_compliance_status(
             self._client, compliance_status='FAILED')
         findings_detail = detail.get_findings_detail(failed_findings)
-        with open(os.path.join(os.getcwd(), file), 'w') as f:
+        with open(os.path.join(os.getcwd(), output), 'w') as f:
             json.dump(findings_detail, f, ensure_ascii=False, indent=4)
 
-    def passed(self, file='passed_findings.json'):
+    def passed(self, output='passed_findings.json'):
         passed_findings = get.get_findings_by_compliance_status(
             self._client, compliance_status='PASSED')
         findings_detail = detail.get_findings_detail(passed_findings)
-        with open(os.path.join(os.getcwd(), file), 'w') as f:
+        with open(os.path.join(os.getcwd(), output), 'w') as f:
             json.dump(findings_detail, f, ensure_ascii=False, indent=4)
+
+    def summary(self, diff):
+        failed_findings = get.get_findings_by_compliance_status(
+            self._client, compliance_status='FAILED')
 
 
 if __name__ == '__main__':
