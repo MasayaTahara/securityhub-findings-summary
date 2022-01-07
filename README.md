@@ -5,16 +5,16 @@ Create summary of AWS Security Hub findings
 # TODO: Add usage of "summary"
 
 # Count findings
-poetry run python main.py count
+poetry run python src/main.py count
 Region: ap-northeast-1
 Compliance status: [FAILED, PASSED] = [36, 381]
 Findings: [CRITICAL, HIGH, MEDIUM, LOW] = [5, 2, 16, 18]
 
 # Show failed findings with file name "failed_findings.csv"
-poetry run python main.py failed
+poetry run python src/main.py failed
 
 # Show passed findings with file name "passed_findings.csv"
-poetry run python main.py passed
+poetry run python src/main.py passed
 ```
 
 
@@ -31,5 +31,5 @@ cp .env.sample .env
 poetry install
 
 # Show help
-poetry run python main.py --help
+poetry run python src/main.py --help
 ```
