@@ -3,7 +3,7 @@ def create_finding_dict(compliance_status: str, severity: str,
                         finding_id: str, created_at: str) -> dict:
     finding = {
         'FindingID': finding_id,
-        'ResourceIds': resource_ids,
+        'ResourceIDs': resource_ids,
         'Title': title,
         'Description': description,
         'Severity': severity,

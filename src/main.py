@@ -49,24 +49,30 @@ class Cli(object):
             writter.writeheader()
             writter.writerows(findings_detail)
 
-    def summary(self, previous):
+    def summary(self, previous=False):
         failed_findings = get.get_findings_by_compliance_status(
             self._client, compliance_status='FAILED')
         current_findings_detail = detail.get_findings_detail(failed_findings)
 
-        # Read .csv (previous finding summary)
-        with open(os.path.join(os.getcwd(), previous), 'r') as f:
-            previous_findings_detail = csv.DictReader(f)
+        if previous:
+            # Read .csv (previous finding summary)
+            with open(os.path.join(os.getcwd(), previous), 'r') as f:
+                previous_findings_detail = csv.DictReader(f)
 
-        # Compare current findings and previous findings
-        current_findings_summary = diff.get_summary(
-            current_findings_detail=current_findings_detail,
-            previous_findings_detail=previous_findings_detail
-        )
+            # Compare current findings and previous findings
+            current_findings_summary = diff.compare_and_get_summary(
+                current_findings_detail=current_findings_detail,
+                previous_findings_detail=previous_findings_detail
+            )
+
+        else:
+            current_findings_summary = diff.get_summary(
+                current_findings_detail=current_findings_detail)
 
         # Write .csv
         now = datetime.datetime.now()
-        output = 'SecurityHub_findings_status_{0:%Y%m%d%H%M}.csv'.format(now)
+        output = 'SecurityHub_findings_status_{0:%Y%m%d%H%M}.csv'.format(
+            now)
         with open(os.path.join(os.getcwd(), output), 'w') as f:
             labels = current_findings_summary[0].keys()
             writter = csv.DictWriter(f, fieldnames=labels)

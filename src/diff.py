@@ -1,4 +1,4 @@
-def get_summary(current_findings_detail, previous_findings_detail) -> list:
+def compare_and_get_summary(current_findings_detail, previous_findings_detail) -> list:
     findings_summary = []
 
     # Get previous/current finding IDs
@@ -40,6 +40,22 @@ def get_summary(current_findings_detail, previous_findings_detail) -> list:
                     status='DELETED',
                 ))
 
+    return findings_summary
+
+
+def get_summary(current_findings_detail) -> list:
+    findings_summary = []
+    for current_finding in current_findings_detail:
+        findings_summary.append(create_summary_dict(
+            finding_id=current_finding['FindingID'],
+            resource_ids=current_finding['ResourceIDs'],
+            title=current_finding['Title'],
+            description=current_finding['Description'],
+            severity=current_finding['Severity'],
+            created_at=current_finding['CreatedAt'],
+            standards=current_finding['Standards'],
+            status='NEW',
+        ))
     return findings_summary
 
 
