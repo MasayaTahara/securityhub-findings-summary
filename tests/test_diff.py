@@ -6,7 +6,7 @@ import pytest
 
 
 def test_compare_and_get_summary_1():
-    # Case1 1 MODIFIED
+    # Case1 1 NOTIFIED
     previous = get_findings_from_csv(
         'tests/data/SecurityHub_findings_status_200001010000.csv')
     current = get_findings_from_csv(
@@ -19,7 +19,7 @@ def test_compare_and_get_summary_1():
 
 
 def test_compare_and_get_summary_2():
-    # Case2 2 MODIFIED
+    # Case2 2 NOTIFIED
     previous = get_findings_from_csv(
         'tests/data/SecurityHub_findings_status_200001020000.csv')
     current = get_findings_from_csv(
@@ -32,7 +32,7 @@ def test_compare_and_get_summary_2():
 
 
 def test_compare_and_get_summary_3():
-    # Case3 NEW/MODIFIED
+    # Case3 NEW/NOTIFIED
     previous = get_findings_from_csv(
         'tests/data/SecurityHub_findings_status_200001030000.csv')
     current = get_findings_from_csv(
@@ -45,7 +45,7 @@ def test_compare_and_get_summary_3():
 
 
 def test_compare_and_get_summary_4():
-    # Case4 NEW/MODIFIED/DELETED
+    # Case4 NEW/NOTIFIED/DELETED
     previous = get_findings_from_csv(
         'tests/data/SecurityHub_findings_status_200001040000.csv')
     current = get_findings_from_csv(
