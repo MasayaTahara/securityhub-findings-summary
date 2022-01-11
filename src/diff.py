@@ -9,17 +9,17 @@ def compare_and_get_summary(current_findings_detail, previous_findings_detail) -
 
     for current_finding in current_findings_detail:
         # TODO: 1. Check whether previous finding IDs contain current finding ID
-
-        findings_summary.append(create_summary_dict(
-            finding_id=current_finding['FindingID'],
-            resource_ids=current_finding['ResourceIDs'],
-            title=current_finding['Title'],
-            description=current_finding['Description'],
-            severity=current_finding['Severity'],
-            created_at=current_finding['CreatedAt'],
-            standards=current_finding['Standards'],
-            status=status,
-        ))
+        if current_finding.get('FindingID') in previous_finding_ids:
+            findings_summary.append(create_summary_dict(
+                finding_id=current_finding['FindingID'],
+                resource_ids=current_finding['ResourceIDs'],
+                title=current_finding['Title'],
+                description=current_finding['Description'],
+                severity=current_finding['Severity'],
+                created_at=current_finding['CreatedAt'],
+                standards=current_finding['Standards'],
+                status='NOTIFIED',
+            ))
 
     # Check whether current finding IDs contain previous finding ID (not DELETED status)
     for previous_finding in previous_findings_detail:
@@ -35,7 +35,7 @@ def compare_and_get_summary(current_findings_detail, previous_findings_detail) -
                     severity=previous_finding['Severity'],
                     created_at=previous_finding['CreatedAt'],
                     standards=previous_finding['Standards'],
-                    status=status,
+                    status='DELETED',
                 ))
 
     return findings_summary
