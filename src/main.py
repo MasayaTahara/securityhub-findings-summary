@@ -71,8 +71,7 @@ class Cli(object):
 
         # Write .csv
         now = datetime.datetime.now()
-        output = 'SecurityHub_findings_status_{0:%Y%m%d%H%M}.csv'.format(
-            now)
+        # TODO: 3. Define output file name
         with open(os.path.join(os.getcwd(), output), 'w') as f:
             labels = current_findings_summary[0].keys()
             writter = csv.DictWriter(f, fieldnames=labels)
