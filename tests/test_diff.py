@@ -57,6 +57,31 @@ def test_compare_and_get_summary_4():
         current_findings_detail=current, previous_findings_detail=previous)
 
 
+def test_compare_and_get_summary_5():
+    # Case5 1 NEW
+    previous = get_findings_from_csv(
+        'tests/data/SecurityHub_findings_status_200001050000.csv')
+    current = get_findings_from_csv(
+        'tests/data/current_findings_5.csv')
+    summary = get_findings_from_csv(
+        'tests/data/summary_5.csv')
+
+    assert summary == src.diff.compare_and_get_summary(
+        current_findings_detail=current, previous_findings_detail=previous)
+
+
+def test_compare_and_get_summary_6():
+    # Case6 1 DELETED
+    previous = get_findings_from_csv(
+        'tests/data/SecurityHub_findings_status_200001060000.csv')
+    current = get_findings_from_csv(
+        'tests/data/current_findings_6.csv')
+    summary = get_findings_from_csv(
+        'tests/data/summary_6.csv')
+
+    assert summary == src.diff.compare_and_get_summary(
+        current_findings_detail=current, previous_findings_detail=previous)
+
 def get_findings_from_csv(file_name):
     findings = []
     with open(os.path.join(os.getcwd(), file_name), 'r') as f:

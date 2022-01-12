@@ -1,0 +1,2 @@
+FindingID,Status,ResourceIDs,Title,Description,Severity,CreatedAt,Standards
+arn:aws:securityhub:ap-northeast-1:XXXXXXXX:subscription/pci-dss/v/3.2.1/PCI.IAM.6/finding/65435e2c-b9cb-400e-bacf-104cfc70f613,DELETED,['arn:aws:iam::XXXXXXXX:user/XXXXXXXX'],PCI.IAM.6 MFA should be enabled for all IAM users,This AWS control checks whether the AWS Identity and Access Management users have multi-factor authentication (MFA) enabled.,MEDIUM,2021-11-05T12:36:09.967Z,['Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS']
