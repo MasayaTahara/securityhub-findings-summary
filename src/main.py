@@ -59,11 +59,11 @@ class Cli(object):
             with open(os.path.join(os.getcwd(), previous), 'r') as f:
                 previous_findings_detail = csv.DictReader(f)
 
-            # Compare current findings and previous findings
-            current_findings_summary = diff.compare_and_get_summary(
-                current_findings_detail=current_findings_detail,
-                previous_findings_detail=previous_findings_detail
-            )
+                # Compare current findings and previous findings
+                current_findings_summary = diff.compare_and_get_summary(
+                    current_findings_detail=current_findings_detail,
+                    previous_findings_detail=previous_findings_detail
+                )
 
         else:
             current_findings_summary = diff.get_summary(
@@ -72,7 +72,8 @@ class Cli(object):
         # Write .csv
         now = datetime.datetime.now()
         # TODO: 3. Define output file name
-        output = './output/SecurityHub_findings_status_' + now.strftime('%Y%m%d%H%M') + '.csv'
+        output = 'SecurityHub_findings_status_' + \
+            now.strftime('%Y%m%d%H%M') + '.csv'
         with open(os.path.join(os.getcwd(), output), 'w') as f:
             labels = current_findings_summary[0].keys()
             writter = csv.DictWriter(f, fieldnames=labels)
