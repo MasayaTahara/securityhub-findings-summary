@@ -8,11 +8,11 @@ def compare_and_get_summary(current_findings_detail, previous_findings_detail) -
         'FindingID') for current_finding in current_findings_detail]
 
     for current_finding in current_findings_detail:
-        # TODO: 1. Check whether previous finding IDs contain current finding ID
+        # Check whether previous finding IDs contain current finding ID
         if current_finding.get('FindingID') in previous_finding_ids:
             status = 'NOTIFIED'
         else:
-            # TODO: 4.  Check whether current finding IDs contain new finding ID which don't include in previous finding IDs
+            # Check whether current finding IDs contain new finding ID which don't include in previous finding IDs
             status = 'NEW'
 
         findings_summary.append(create_summary_dict(
@@ -31,7 +31,6 @@ def compare_and_get_summary(current_findings_detail, previous_findings_detail) -
         if previous_finding.get('Status') != 'DELETED':
             if not previous_finding.get('FindingID') in current_finding_ids:
 
-                # TODO: 2. Append "DELETED" findings
                 findings_summary.append(create_summary_dict(
                     finding_id=previous_finding['FindingID'],
                     resource_ids=previous_finding['ResourceIDs'],
